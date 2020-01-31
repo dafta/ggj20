@@ -15,6 +15,5 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-        Debug.Log("Kao ono izasao si iz igra ziher");
     }
 }
