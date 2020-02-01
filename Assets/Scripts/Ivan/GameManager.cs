@@ -20,19 +20,19 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (isPaused == false)
             {
                 isPaused = true;
                 Time.timeScale = 0;
-                SceneManager.LoadScene(0);
+                PauseScreen.SetActive(true);
             }
             else
             {
                 isPaused = false;
                 Time.timeScale = 1;
-                SceneManager.LoadScene(1);
+                PauseScreen.SetActive(false);
             }
         }
         minute = (int)timer / 60;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         if(minute < 10)
         {
             Timer.text = "0" + minute.ToString() + ":";
-            if (minute < 10)
+            if (sekunde < 10)
                 Timer.text += "0" + sekunde;
             else
                 Timer.text += sekunde;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Timer.text = minute.ToString() + ":";
-            if (minute < 10)
+            if (sekunde < 10)
                 Timer.text += "0" + sekunde;
             else
                 Timer.text += sekunde;
