@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class OptionsReturnSaveSensitivity : MonoBehaviour
 {
-    public float sensitivity = 0.5f;
+    public float sensitivity = 7f;
 
     public void SpremanjePostavki(float value)
     {
