@@ -6,11 +6,12 @@ public class InteractableObject : MonoBehaviour
 {
     public string neededItem;
     public bool repaired = false;
-    public Color repairedColor;
+    public GameObject fixedObject;
+    public GameObject brokenObject;
 
     // Start is called before the first frame update
     void Start() {
-
+        fixedObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,8 +20,8 @@ public class InteractableObject : MonoBehaviour
     }
 
     public void Repair() {
-        repaired = true;
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-        renderer.material.color = repairedColor;
+        Debug.Log("Repairing");
+        fixedObject.SetActive(true);
+        brokenObject.SetActive(false);
     }
 }

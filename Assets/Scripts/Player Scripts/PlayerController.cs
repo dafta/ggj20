@@ -70,11 +70,11 @@ public class PlayerController : MonoBehaviour
             if (targeted != null
                     && targeted.GetComponent<InteractableObject>() != null
                     && Input.GetKeyDown(KeyCode.R)) {
-                Debug.Log("Repairing");
                 InteractableObject interactable = targeted.GetComponent<InteractableObject>();
 
                 if (!interactable.repaired
                         && inventory.Contains(interactable.neededItem)) {
+                    Debug.Log("Repairing");
                     inventory.Remove(interactable.neededItem);
                     interactable.Repair();
                 }
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F)) {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             if (movementEnabled) {
                 movementEnabled = !movementEnabled;
                 Cursor.lockState = CursorLockMode.None;
