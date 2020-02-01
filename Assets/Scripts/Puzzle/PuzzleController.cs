@@ -11,6 +11,10 @@ public class PuzzleController : MonoBehaviour
     public GameObject puzzle;
     public GameObject puzzleStarter;
 
+    public GameObject tower;
+
+    public int puzzleNo;
+
     private bool exitable = false;
 
     void Update()
@@ -30,6 +34,28 @@ public class PuzzleController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
+        PickupItems pi = player.GetComponent<PickupItems>();
+
+        if (puzzleNo == 1)
+        {
+            pi.tower1Repaired = true;
+            tower.GetComponent<FixTower>().Destroy();
+            pi.FixAnim.SetBool("Repair", true);
+            pi.Invoke("RemoveFix", 2f);
+        } else if (puzzleNo == 2)
+        {
+            pi.tower2Repaired = true;
+            tower.GetComponent<FixTower>().Destroy();
+            pi.FixAnim.SetBool("Repair", true);
+            pi.Invoke("RemoveFix", 2f);
+        } else if (puzzleNo == 3)
+        {
+            pi.tower3Repaired = true;
+            tower.GetComponent<FixTower>().Destroy();
+            pi.FixAnim.SetBool("Repair", true);
+            pi.Invoke("RemoveFix", 2f);
+        }
+
         puzzleStarter.SetActive(false);
         puzzle.SetActive(false);
         player.SetActive(true);

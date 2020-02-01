@@ -9,10 +9,13 @@ public class PickupItems : MonoBehaviour
 
     [Header("Objects")]
     public GameObject gasTank;
+    public GameObject kriloOtpalo;
     public GameObject screwDriver;
     public GameObject propeler;
 
     public GameObject Helipropeler;
+
+    public GameObject walkieTalkie;
 
     [Header("Text References")]
     public Text pickUpText;
@@ -22,6 +25,7 @@ public class PickupItems : MonoBehaviour
     public GameObject tick;
     public GameObject tick1;
     public GameObject tick2;
+    public GameObject tick3;
 
     [Header("Icons References")]
     public GameObject screwdriverIcon;
@@ -33,10 +37,35 @@ public class PickupItems : MonoBehaviour
     public bool wing = false;
     public bool gas = false;
     public bool screwdriver = false;
+    public bool elisa = false;
 
     [Header("bools for turn on/off text")]
     public bool wingIsRepaired = false;
     public bool gasIsRepaired = false;
+
+    public bool tower1Repaired = false;
+    public bool tower2Repaired = false;
+    public bool tower3Repaired = false;
+
+    [Header("Animations")]
+    public Animator pickupAnim;
+    public Animator FixAnim;
+    public Animator walkieAnim;
+
+    [Header("Press to grab... icons")]
+    public GameObject screwdriverPNG;
+    public GameObject fuelPNG;
+    public GameObject propelerPNG;  //wingPNG
+    //public GameObject rotorPNG;
+
+    [Header("Player")]
+    public GameObject player;
+
+    [Header("Puzzles")]
+    public GameObject puzzleTutorial;
+    public GameObject puzzle1;
+    public GameObject puzzle2;
+    public GameObject puzzle3;
 
     private void Start()
     {
@@ -55,6 +84,18 @@ public class PickupItems : MonoBehaviour
         {
             panel.SetActive(false);
         }
+
+        if (Input.GetMouseButton(1))
+        {
+            walkieTalkie.SetActive(true);
+            walkieAnim.SetBool("HoldingWalkie", true);
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            walkieTalkie.SetActive(false);
+            walkieAnim.SetBool("HoldingWalkie", false);
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -63,49 +104,79 @@ public class PickupItems : MonoBehaviour
         //Triggeri za Pick up
         if(other.tag == "GasTank")
         {
-            pickUpText.text = "Press 'E' to pick up gas carnister";
+            //fuelPNG - pick up pop up
+            fuelPNG.SetActive(true);
             if(Input.GetKey(KeyCode.E))
             {
                 gasTank.SetActive(false);
                 gas = true;
                 tick1.SetActive(true);
-                pickUpText.text = "";
+
+                Destroy(fuelPNG);
+
+                pickupAnim.SetBool("Pickup", true);
+                Invoke("RemoveArm", 0.50f);
             }
         }
 
         if (other.tag == "Propeler")
         {
-            pickUpText.text = "Press 'E' to pick up wing";
+            propelerPNG.SetActive(true);
             if (Input.GetKey(KeyCode.E))
             {
                 propeler.SetActive(false);
                 wing = true;
                 tick2.SetActive(true);
-                pickUpText.text = "";
+
+                Destroy(propelerPNG);
+
+                pickupAnim.SetBool("Pickup", true);
+                Invoke("RemoveArm", 0.50f);
             }
         }
 
         if (other.tag == "Screwdriver")
         {
-            pickUpText.text = "Press 'E' to pick up screwdriver";
+            screwdriverPNG.SetActive(true);
             if (Input.GetKey(KeyCode.E))
             {
                 screwDriver.SetActive(false);
                 screwdriver = true;
                 tick.SetActive(true);
-                pickUpText.text = "";
+
+                Destroy(screwdriverPNG);
+
+                pickupAnim.SetBool("Pickup", true);
+                Invoke("RemoveArm", 0.50f);
             }
         }
 
-        
+        if (other.tag == "Elisa")
+        {
+            //fuelPNG - pick up pop up
+            propelerPNG.SetActive(true);
+            if (Input.GetKey(KeyCode.E))
+            {
+                kriloOtpalo.SetActive(false);
+                elisa = true;
+                tick3.SetActive(true);
+
+                Destroy(propelerPNG);
+
+                pickupAnim.SetBool("Pickup", true);
+                Invoke("RemoveArm", 0.50f);
+            }
+        }
+
+
 
         //Triggeri za repair
-        if(other.tag == "RepairWing")
+        if (other.tag == "RepairWing")
         {
             if(wing == false)
             {
                 repairText.text = "You need to find the propeler";
-                
+
             } else
             {
                 repairText.text = "Press 'R' to repair wing";
@@ -117,10 +188,11 @@ public class PickupItems : MonoBehaviour
                     wing = false;
                     propelerIcon.SetActive(false);
                     //wing = false;
+
                 }
 
                 //iskljuciti kvacicu za propeler u inventoryu
-            } 
+            }
         }
 
         if (other.tag == "PutFuel")
@@ -142,11 +214,49 @@ public class PickupItems : MonoBehaviour
                 //iskljuciti kvacicu za gas u inventoryu
             }
         }
+
+        if(other.tag == "RadioTrigger1")
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                player.SetActive(false);
+                puzzle1.SetActive(true);
+            }
+        }
+
+        if(other.tag == "RadioTrigger2")
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                player.SetActive(false);
+                puzzle2.SetActive(true);
+            }
+        }
+
+        if(other.tag == "RadioTrigger3")
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                player.SetActive(false);
+                puzzle3.SetActive(true);
+            }
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        pickUpText.text = "";
-        repairText.text = "";
+        screwdriverPNG.SetActive(false);
+        fuelPNG.SetActive(false);
+        propelerPNG.SetActive(false);
+    }
+
+    public void RemoveArm()
+    {
+        pickupAnim.SetBool("Pickup", false);
+    }
+
+    public void RemoveFix()
+    {
+        FixAnim.SetBool("Repair", false);
     }
 }
