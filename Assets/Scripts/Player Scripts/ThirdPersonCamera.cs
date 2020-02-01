@@ -30,7 +30,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        Debug.Log(mouseSensitivity);
+        //Debug.Log(mouseSensitivity);
         //pivot setup
         pivot.transform.position = player.transform.position;
 

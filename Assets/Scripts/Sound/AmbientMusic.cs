@@ -8,5 +8,6 @@ public class AmbientMusic : MonoBehaviour
     void Update()
     {
         AudioListener.volume = PlayerPrefs.GetFloat("muzika");
+        //Debug.Log(PlayerPrefs.GetFloat("muzika"));
     }
 }

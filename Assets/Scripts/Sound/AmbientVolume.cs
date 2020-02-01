@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AmbientVolume : MonoBehaviour
 {
-    public AudioSource pozadina;
-    void Start()
+    void Update()
     {
-        GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("ambient");
+        AudioListener.volume = PlayerPrefs.GetFloat("ambient");
+        Debug.Log(PlayerPrefs.GetFloat("ambient"));
     }
 }
