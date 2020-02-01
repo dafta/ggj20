@@ -11,12 +11,15 @@ public class AmbientMusic : MonoBehaviour
     {
         sound = GetComponent<AudioSource>();
         isPlaying = true;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isPlaying == false && finishedPlaying == false)
+        Debug.Log(PlayerPrefs.GetFloat("ambient", 0));
+        if (isPlaying == false && finishedPlaying == false)
         {
             sound.Play();
             isPlaying = true;

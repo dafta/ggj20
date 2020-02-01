@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class OptionsReturnSave : MonoBehaviour
+public class OptionsReturnSaveMuzika : MonoBehaviour
 {
-    public float muzika;
+    public float muzika = 0.5f;
 
     public void SpremanjePostavki(float value)
     {
-        muzika = Mathf.RoundToInt(value);
+        muzika = value;
+        PlayerPrefs.SetFloat("muzika", muzika);
     }
 }
