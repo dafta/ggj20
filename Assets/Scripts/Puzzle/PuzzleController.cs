@@ -15,12 +15,12 @@ public class PuzzleController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             exitable = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && exitable)
+        if (Input.GetKeyDown(KeyCode.R) && exitable)
         {
             exitable = false;
 

@@ -21,9 +21,9 @@ public class StartPuzzle : MonoBehaviour
     {
         if (other.tag == "PuzzleTutorialStart")
         {
-            puzzleStartText.text = "Press Q to start puzzle";
+            puzzleStartText.text = "Press R to start puzzle";
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 puzzleStartText.text = "";
 
@@ -34,9 +34,9 @@ public class StartPuzzle : MonoBehaviour
 
         if (other.tag == "Puzzle1Start")
         {
-            puzzleStartText.text = "Press Q to start puzzle";
+            puzzleStartText.text = "Press R to start puzzle";
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 puzzleStartText.text = "";
 
@@ -47,9 +47,9 @@ public class StartPuzzle : MonoBehaviour
 
         if (other.tag == "Puzzle2Start")
         {
-            puzzleStartText.text = "Press Q to start puzzle";
+            puzzleStartText.text = "Press R to start puzzle";
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 puzzleStartText.text = "";
 
@@ -60,9 +60,9 @@ public class StartPuzzle : MonoBehaviour
 
         if (other.tag == "Puzzle3Start")
         {
-            puzzleStartText.text = "Press Q to start puzzle";
+            puzzleStartText.text = "Press R to start puzzle";
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 puzzleStartText.text = "";
 
