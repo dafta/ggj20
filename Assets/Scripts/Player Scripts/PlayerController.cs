@@ -45,13 +45,15 @@ public class PlayerController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.LeftShift))
             {
-                CharacterSpeed = 2;
+                CharacterSpeed = 7;
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                CharacterSpeed = 1;
+                CharacterSpeed = 5;
             }
+
+            
 
             if (targeted != null
                     && targeted.GetComponent<PickupableObject>() != null
