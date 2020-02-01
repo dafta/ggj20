@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
             if (!interactable.repaired
                     && inventory.Contains(interactable.neededItem)) {
+                inventory.Remove(interactable.neededItem);
                 interactable.Repair();
             }
         }
