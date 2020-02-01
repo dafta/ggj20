@@ -9,6 +9,10 @@ TagManager:
   - Propeler
   - RepairWing
   - PutFuel
+  - PuzzleTutorialStart
+  - Puzzle1Start
+  - Puzzle2Start
+  - Puzzle3Start
   layers:
   - Default
   - TransparentFX
