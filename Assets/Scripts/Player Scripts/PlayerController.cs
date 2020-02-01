@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float rotateSpeed = 10;
     public bool movementEnabled = true;
+    public ThirdPersonCamera camera;
 
     private Vector3 moveDirection;
     private Animator animator;
@@ -124,9 +125,11 @@ public class PlayerController : MonoBehaviour
             if (movementEnabled) {
                 movementEnabled = !movementEnabled;
                 Cursor.lockState = CursorLockMode.None;
+                camera.enabled = false;
             } else {
                 movementEnabled = !movementEnabled;
                 Cursor.lockState = CursorLockMode.Locked;
+                camera.enabled = true;
             }
         }
     }
