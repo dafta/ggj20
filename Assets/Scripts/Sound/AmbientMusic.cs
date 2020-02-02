@@ -4,30 +4,10 @@ using UnityEngine;
 
 public class AmbientMusic : MonoBehaviour
 {
-    public AudioSource sound;
-    private bool isPlaying = false;
-    private bool finishedPlaying = false;
-    void Start()
-    {
-        sound = GetComponent<AudioSource>();
-        isPlaying = true;
-
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerPrefs.GetFloat("ambient", 0));
-        if (isPlaying == false && finishedPlaying == false)
-        {
-            sound.Play();
-            isPlaying = true;
-        }
-        else if(isPlaying == true &&  finishedPlaying == false)
-        {
-            sound.Stop();
-            finishedPlaying = false;
-        }
+        AudioListener.volume = PlayerPrefs.GetFloat("muzika");
+        //Debug.Log(PlayerPrefs.GetFloat("muzika"));
     }
 }

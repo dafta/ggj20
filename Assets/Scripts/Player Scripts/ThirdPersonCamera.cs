@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     //third person controller
-    public float mouseSensitivity = 10f;
+    public float mouseSensitivity;
     private float mouseX;
     private float mouseY;
 
@@ -24,10 +24,13 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        AudioListener.volume = PlayerPrefs.GetFloat("ambient");
+        mouseSensitivity = PlayerPrefs.GetFloat("sensitivity");
     }
 
     void LateUpdate()
     {
+        //Debug.Log(mouseSensitivity);
         //pivot setup
         pivot.transform.position = player.transform.position;
 
