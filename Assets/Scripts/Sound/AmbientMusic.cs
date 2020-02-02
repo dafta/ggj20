@@ -9,5 +9,7 @@ public class AmbientMusic : MonoBehaviour
     {
         AudioListener.volume = PlayerPrefs.GetFloat("muzika", 0.5f);
         //Debug.Log(PlayerPrefs.GetFloat("muzika"));
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
