@@ -50,6 +50,7 @@ public class PickupItems : MonoBehaviour
     public int elisa = 0;
 
     [Header("Tower Status")]
+    public int tutorialStatus = 0;
     public int tower1Status = 0;
     public int tower2Status = 0;
     public int tower3Status = 0;
@@ -95,6 +96,8 @@ public class PickupItems : MonoBehaviour
         gas = PlayerPrefs.GetInt("gas", 0);
         screwdriver = PlayerPrefs.GetInt("screwdriver", 0);
         elisa = PlayerPrefs.GetInt("elisa", 0);
+
+        tutorialStatus = PlayerPrefs.GetInt("tutorialStatus", 0);
 
         tower1Status = PlayerPrefs.GetInt("tower1Status", 0);
         tower2Status = PlayerPrefs.GetInt("tower2Status", 0);
@@ -331,9 +334,18 @@ public class PickupItems : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
-                player.SetActive(false);
-                puzzle1.SetActive(true);
-                captureTower.Play();
+                if (tutorialStatus >= 1)
+                {
+                    player.SetActive(false);
+                    puzzle1.SetActive(true);
+                    captureTower.Play();
+                } else {
+                    tutorialStatus = 1;
+                    PlayerPrefs.SetInt("tutorialStatus", tutorialStatus);
+
+                    player.SetActive(false);
+                    puzzleTutorial.SetActive(true);
+                }
             }
         }
 
@@ -341,9 +353,18 @@ public class PickupItems : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
-                player.SetActive(false);
-                puzzle2.SetActive(true);
-                captureTower.Play();
+                if (tutorialStatus >= 1)
+                {
+                    player.SetActive(false);
+                    puzzle2.SetActive(true);
+                    captureTower.Play();
+                } else {
+                    tutorialStatus = 1;
+                    PlayerPrefs.SetInt("tutorialStatus", tutorialStatus);
+
+                    player.SetActive(false);
+                    puzzleTutorial.SetActive(true);
+                }
             }
         }
 
@@ -351,9 +372,18 @@ public class PickupItems : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
-                player.SetActive(false);
-                puzzle3.SetActive(true);
-                captureTower.Play();
+                if (tutorialStatus >= 1)
+                {
+                    player.SetActive(false);
+                    puzzle3.SetActive(true);
+                    captureTower.Play();
+                } else {
+                    tutorialStatus = 1;
+                    PlayerPrefs.SetInt("tutorialStatus", tutorialStatus);
+
+                    player.SetActive(false);
+                    puzzleTutorial.SetActive(true);
+                }
             }
         }
     }

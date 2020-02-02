@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("screwdriver", 0);
         PlayerPrefs.SetInt("elisa", 0);
 
+        PlayerPrefs.SetInt("tutorialStatus", 0);
+
         PlayerPrefs.SetInt("tower1Status", 0);
         PlayerPrefs.SetInt("tower2Status", 0);
         PlayerPrefs.SetInt("tower3Status", 0);
