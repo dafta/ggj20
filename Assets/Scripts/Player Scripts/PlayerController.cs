@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     float mh;
 
     private void Start() {
+        float x =PlayerPrefs.GetFloat("X", transform.position.x);
+        float y =PlayerPrefs.GetFloat("Y", transform.position.y);
+        float z =PlayerPrefs.GetFloat("Z", transform.position.z);
+
+        transform.position = new Vector3(x, y, z);
+
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
     }
@@ -84,6 +90,10 @@ public class PlayerController : MonoBehaviour
             }
 
             if (Input.GetKeyDown(KeyCode.Escape)) {
+                PlayerPrefs.SetFloat("X", transform.position.x);
+                PlayerPrefs.SetFloat("Y", transform.position.y);
+                PlayerPrefs.SetFloat("Z", transform.position.z);
+
                 Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("MainMenu");
             }

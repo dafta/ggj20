@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        PlayerPrefs.SetFloat("X", 8.35f);
+        PlayerPrefs.SetFloat("Y", 3.06f);
+        PlayerPrefs.SetFloat("Z", 88.09f);
+
         PlayerPrefs.SetInt("wing", 0);
         PlayerPrefs.SetInt("gas", 0);
         PlayerPrefs.SetInt("screwdriver", 0);
