@@ -232,7 +232,7 @@ public class PickupItems : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 screwDriver.SetActive(false);
-                screwdriver = 0;
+                screwdriver = 1;
                 tick.SetActive(true);
 
                 PlayerPrefs.SetInt("screwdriver", screwdriver);
