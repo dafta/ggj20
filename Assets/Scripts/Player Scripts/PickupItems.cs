@@ -333,7 +333,6 @@ public class PickupItems : MonoBehaviour
             {
                 player.SetActive(false);
                 puzzle1.SetActive(true);
-                counter++;
                 captureTower.Play();
             }
         }
@@ -344,7 +343,6 @@ public class PickupItems : MonoBehaviour
             {
                 player.SetActive(false);
                 puzzle2.SetActive(true);
-                counter++;
                 captureTower.Play();
             }
         }
@@ -355,7 +353,6 @@ public class PickupItems : MonoBehaviour
             {
                 player.SetActive(false);
                 puzzle3.SetActive(true);
-                counter++;
                 captureTower.Play();
             }
         }

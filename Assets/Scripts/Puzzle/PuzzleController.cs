@@ -39,17 +39,23 @@ public class PuzzleController : MonoBehaviour
         if (puzzleNo == 1)
         {
             pi.tower1Status = 1;
+            pi.counter++;
             PlayerPrefs.SetInt("tower1Status", pi.tower1Status);
+            PlayerPrefs.SetInt("counter", pi.counter);
             tower.GetComponent<FixTower>().Destroy();
         } else if (puzzleNo == 2)
         {
             pi.tower2Status = 2;
+            pi.counter++;
             PlayerPrefs.SetInt("tower2Status", pi.tower2Status);
+            PlayerPrefs.SetInt("counter", pi.counter);
             tower.GetComponent<FixTower>().Destroy();
         } else if (puzzleNo == 3)
         {
             pi.tower3Status = 3;
+            pi.counter++;
             PlayerPrefs.SetInt("tower3Status", pi.tower3Status);
+            PlayerPrefs.SetInt("counter", pi.counter);
             tower.GetComponent<FixTower>().Destroy();
         }
 
