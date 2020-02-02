@@ -15,8 +15,21 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        PlayerPrefs.SetInt("wing", 0);
+        PlayerPrefs.SetInt("gas", 0);
+        PlayerPrefs.SetInt("screwdriver", 0);
+        PlayerPrefs.SetInt("elisa", 0);
+
+        PlayerPrefs.SetInt("counter", 0);
+
         SceneManager.LoadScene(1);
     }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void Update()
     {
         timer += Time.deltaTime;

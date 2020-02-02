@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
                 CharacterSpeed = 5;
             }
 
-            
+
 
             if (targeted != null
                     && targeted.GetComponent<PickupableObject>() != null
@@ -80,6 +81,11 @@ public class PlayerController : MonoBehaviour
                     inventory.Remove(interactable.neededItem);
                     interactable.Repair();
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene("MainMenu");
             }
 
             //animations setup

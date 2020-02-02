@@ -44,10 +44,10 @@ public class PickupItems : MonoBehaviour
 
 
     [Header("Inventory")]
-    public bool wing = false;
-    public bool gas = false;
-    public bool screwdriver = false;
-    public bool elisa = false;
+    public int wing = 0;
+    public int gas = 0;
+    public int screwdriver = 0;
+    public int elisa = 0;
 
     [Header("bools for turn on/off text")]
     public bool wingIsRepaired = false;
@@ -82,9 +82,57 @@ public class PickupItems : MonoBehaviour
 
     private void Start()
     {
-        gasTank.SetActive(true);
         Helipropeler.SetActive(false);
         endGame.SetActive(false);
+
+        wing = PlayerPrefs.GetInt("wing", 0);
+        Debug.Log(wing);
+        gas = PlayerPrefs.GetInt("gas", 0);
+        Debug.Log(gas);
+        screwdriver = PlayerPrefs.GetInt("screwdriver", 0);
+        Debug.Log(screwdriver);
+        elisa = PlayerPrefs.GetInt("elisa", 0);
+        Debug.Log(elisa);
+
+        counter = PlayerPrefs.GetInt("counter", 0);
+
+        if (wing >= 1) {
+            propeler.SetActive(false);
+            tick2.SetActive(true);
+
+            if (wing >= 2) {
+                rotor.SetActive(true);
+                propelerIcon.SetActive(false);
+            }
+        }
+
+        if (gas >= 1) {
+            gasTank.SetActive(false);
+            tick1.SetActive(true);
+
+            if (gas >= 2) {
+                fuelIcon.SetActive(false);
+            }
+        }
+
+        if (screwdriver >= 1) {
+            screwDriver.SetActive(false);
+            tick.SetActive(true);
+
+            if (screwdriver >= 2) {
+                screwdriverIcon.SetActive(false);
+            }
+        }
+
+        if (elisa >= 1) {
+            kriloOtpalo.SetActive(false);
+            tick3.SetActive(true);
+
+            if (elisa >= 2) {
+                zadnjiKraj2.SetActive(true);
+                zadnjiKraj.SetActive(false);
+            }
+        }
     }
 
     private void Update()
@@ -111,7 +159,7 @@ public class PickupItems : MonoBehaviour
             walkieAnim.SetBool("HoldingWalkie", false);
         }
 
-        if(counter >= 7) 
+        if(counter >= 7)
         {
             //begin talking sound
             //upali sliku sa objectivom "get of the island"
@@ -130,8 +178,10 @@ public class PickupItems : MonoBehaviour
             if(Input.GetKey(KeyCode.E))
             {
                 gasTank.SetActive(false);
-                gas = true;
+                gas = 1;
                 tick1.SetActive(true);
+
+                PlayerPrefs.SetInt("gas", gas);
 
                 Destroy(fuelPNG);
 
@@ -146,8 +196,10 @@ public class PickupItems : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 propeler.SetActive(false);
-                wing = true;
+                wing = 1;
                 tick2.SetActive(true);
+
+                PlayerPrefs.SetInt("wing", wing);
 
                 Destroy(rotorPNG);
 
@@ -162,8 +214,10 @@ public class PickupItems : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 screwDriver.SetActive(false);
-                screwdriver = true;
+                screwdriver = 0;
                 tick.SetActive(true);
+
+                PlayerPrefs.SetInt("screwdriver", screwdriver);
 
                 Destroy(screwdriverPNG);
 
@@ -179,8 +233,10 @@ public class PickupItems : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 kriloOtpalo.SetActive(false);
-                elisa = true;
+                elisa = 1;
                 tick3.SetActive(true);
+
+                PlayerPrefs.SetInt("elisa", elisa);
 
                 Destroy(propelerPNG);
 
@@ -194,48 +250,60 @@ public class PickupItems : MonoBehaviour
         //Triggeri za repair
         if (other.tag == "RepairRotor")
         {
-            if(wing)
+            if(wing == 1)
             {
                 rotor.SetActive(true);
                 propelerIcon.SetActive(false);
                 counter++;
-                wing = false;
+                wing = 2;
+
+                PlayerPrefs.SetInt("counter", counter);
+                PlayerPrefs.SetInt("wing", wing);
             }
         }
 
         if (other.tag == "RepairZadnjiKraj")
         {
-            if (elisa)
+            if (elisa == 1)
             {
                 zadnjiKraj2.SetActive(true);
                 zadnjiKraj.SetActive(false);
                 counter++;
-                elisa = false;
+                elisa = 2;
+
+                PlayerPrefs.SetInt("counter", counter);
+                PlayerPrefs.SetInt("elisa", elisa);
             }
         }
 
         if (other.tag == "FillGas")
         {
-            if (gas)
+            if (gas == 1)
             {
                 //optional - animacija sipanja goriva (ako stignem)
                 sipanje.SetActive(true);
                 Invoke("DeleteGasAnimation", 4.3f);
                 fuelIcon.SetActive(false);
                 counter++;
-                gas = false;
+                gas = 2;
+
+                PlayerPrefs.SetInt("counter", counter);
+                PlayerPrefs.SetInt("gas", gas);
             }
         }
 
         if (other.tag == "Serafanje")
         {
-            if (screwdriver)
+            if (screwdriver == 1)
             {
                 serafanjeAnim.SetActive(true);
                 Invoke("DeleteSerafanjeAnim", 4.35f);
                 screwdriverIcon.SetActive(false);
                 counter++;
-                screwdriver = false;
+                screwdriver = 2;
+
+                PlayerPrefs.SetInt("counter", counter);
+                PlayerPrefs.SetInt("screwdriver", screwdriver);
             }
         }
 
