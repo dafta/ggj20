@@ -6,7 +6,7 @@ public class AmbientVolume : MonoBehaviour
 {
     void Update()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("ambient");
-        Debug.Log(PlayerPrefs.GetFloat("ambient")); 
+        AudioListener.volume = PlayerPrefs.GetFloat("ambient", 0.5f);
+        Debug.Log(PlayerPrefs.GetFloat("ambient"));
     }
 }

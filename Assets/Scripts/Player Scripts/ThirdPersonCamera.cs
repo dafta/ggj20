@@ -24,8 +24,8 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        AudioListener.volume = PlayerPrefs.GetFloat("ambient");
-        mouseSensitivity = PlayerPrefs.GetFloat("sensitivity");
+        AudioListener.volume = PlayerPrefs.GetFloat("ambient", 0.5f);
+        mouseSensitivity = PlayerPrefs.GetFloat("sensitivity", 7f);
     }
 
     void LateUpdate()
