@@ -38,22 +38,19 @@ public class PuzzleController : MonoBehaviour
 
         if (puzzleNo == 1)
         {
-            pi.tower1Repaired = true;
+            pi.tower1Status = 1;
+            PlayerPrefs.SetInt("tower1Status", pi.tower1Status);
             tower.GetComponent<FixTower>().Destroy();
-            pi.FixAnim.SetBool("Repair", true);
-            pi.Invoke("RemoveFix", 2f);
         } else if (puzzleNo == 2)
         {
-            pi.tower2Repaired = true;
+            pi.tower2Status = 2;
+            PlayerPrefs.SetInt("tower2Status", pi.tower2Status);
             tower.GetComponent<FixTower>().Destroy();
-            pi.FixAnim.SetBool("Repair", true);
-            pi.Invoke("RemoveFix", 2f);
         } else if (puzzleNo == 3)
         {
-            pi.tower3Repaired = true;
+            pi.tower3Status = 3;
+            PlayerPrefs.SetInt("tower3Status", pi.tower3Status);
             tower.GetComponent<FixTower>().Destroy();
-            pi.FixAnim.SetBool("Repair", true);
-            pi.Invoke("RemoveFix", 2f);
         }
 
         puzzleStarter.SetActive(false);

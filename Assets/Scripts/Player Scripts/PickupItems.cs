@@ -49,13 +49,14 @@ public class PickupItems : MonoBehaviour
     public int screwdriver = 0;
     public int elisa = 0;
 
+    [Header("Tower Status")]
+    public int tower1Status = 0;
+    public int tower2Status = 0;
+    public int tower3Status = 0;
+
     [Header("bools for turn on/off text")]
     public bool wingIsRepaired = false;
     public bool gasIsRepaired = false;
-
-    public bool tower1Repaired = false;
-    public bool tower2Repaired = false;
-    public bool tower3Repaired = false;
 
     [Header("Animations")]
     public Animator pickupAnim;
@@ -70,6 +71,11 @@ public class PickupItems : MonoBehaviour
 
     [Header("Player")]
     public GameObject player;
+
+    [Header("Towers")]
+    public GameObject tower1;
+    public GameObject tower2;
+    public GameObject tower3;
 
     [Header("Puzzles")]
     public GameObject puzzleTutorial;
@@ -86,13 +92,13 @@ public class PickupItems : MonoBehaviour
         endGame.SetActive(false);
 
         wing = PlayerPrefs.GetInt("wing", 0);
-        Debug.Log(wing);
         gas = PlayerPrefs.GetInt("gas", 0);
-        Debug.Log(gas);
         screwdriver = PlayerPrefs.GetInt("screwdriver", 0);
-        Debug.Log(screwdriver);
         elisa = PlayerPrefs.GetInt("elisa", 0);
-        Debug.Log(elisa);
+
+        tower1Status = PlayerPrefs.GetInt("tower1Status", 0);
+        tower2Status = PlayerPrefs.GetInt("tower2Status", 0);
+        tower3Status = PlayerPrefs.GetInt("tower3Status", 0);
 
         counter = PlayerPrefs.GetInt("counter", 0);
 
@@ -132,6 +138,18 @@ public class PickupItems : MonoBehaviour
                 zadnjiKraj2.SetActive(true);
                 zadnjiKraj.SetActive(false);
             }
+        }
+
+        if (tower1Status >= 1) {
+            tower1.GetComponent<FixTower>().Destroy();
+        }
+
+        if (tower2Status >= 1) {
+            tower2.GetComponent<FixTower>().Destroy();
+        }
+
+        if (tower3Status >= 1) {
+            tower3.GetComponent<FixTower>().Destroy();
         }
     }
 
