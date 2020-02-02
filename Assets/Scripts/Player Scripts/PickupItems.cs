@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PickupItems : MonoBehaviour
 {
+    public int fixedStation = 0;
     public int counter = 0;
 
     public GameObject panel;
@@ -86,6 +87,15 @@ public class PickupItems : MonoBehaviour
 
     [Header("Objects")]
     public AudioSource captureTower;
+    public AudioSource pickupItem;
+
+    public AudioSource talking;
+    public AudioSource talking2;
+    public AudioSource talking3;
+
+    public AudioSource repairSound;
+
+    public bool idk = false;
 
     private void Start()
     {
@@ -186,6 +196,21 @@ public class PickupItems : MonoBehaviour
             //upali sliku sa objectivom "get of the island"
             endGame.SetActive(true);
         }
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            talking.Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            talking2.Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            talking3.Play();
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -208,6 +233,8 @@ public class PickupItems : MonoBehaviour
 
                 pickupAnim.SetBool("Pickup", true);
                 Invoke("RemoveArm", 0.50f);
+
+                pickupItem.Play();
             }
         }
 
@@ -226,6 +253,7 @@ public class PickupItems : MonoBehaviour
 
                 pickupAnim.SetBool("Pickup", true);
                 Invoke("RemoveArm", 0.50f);
+                pickupItem.Play();
             }
         }
 
@@ -244,6 +272,7 @@ public class PickupItems : MonoBehaviour
 
                 pickupAnim.SetBool("Pickup", true);
                 Invoke("RemoveArm", 0.50f);
+                pickupItem.Play();
             }
         }
 
@@ -263,6 +292,7 @@ public class PickupItems : MonoBehaviour
 
                 pickupAnim.SetBool("Pickup", true);
                 Invoke("RemoveArm", 0.50f);
+                pickupItem.Play();
             }
         }
 
@@ -280,6 +310,8 @@ public class PickupItems : MonoBehaviour
 
                 PlayerPrefs.SetInt("counter", counter);
                 PlayerPrefs.SetInt("wing", wing);
+
+                repairSound.Play();
             }
         }
 
@@ -294,6 +326,8 @@ public class PickupItems : MonoBehaviour
 
                 PlayerPrefs.SetInt("counter", counter);
                 PlayerPrefs.SetInt("elisa", elisa);
+
+                repairSound.Play();
             }
         }
 
@@ -310,6 +344,8 @@ public class PickupItems : MonoBehaviour
 
                 PlayerPrefs.SetInt("counter", counter);
                 PlayerPrefs.SetInt("gas", gas);
+
+                repairSound.Play();
             }
         }
 
@@ -323,8 +359,11 @@ public class PickupItems : MonoBehaviour
                 counter++;
                 screwdriver = 2;
 
+
                 PlayerPrefs.SetInt("counter", counter);
                 PlayerPrefs.SetInt("screwdriver", screwdriver);
+
+                repairSound.Play();
             }
         }
 
@@ -334,18 +373,11 @@ public class PickupItems : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
-                if (tutorialStatus >= 1)
-                {
-                    player.SetActive(false);
-                    puzzle1.SetActive(true);
-                    captureTower.Play();
-                } else {
-                    tutorialStatus = 1;
-                    PlayerPrefs.SetInt("tutorialStatus", tutorialStatus);
-
-                    player.SetActive(false);
-                    puzzleTutorial.SetActive(true);
-                }
+                player.SetActive(false);
+                puzzle1.SetActive(true);
+                captureTower.Play();
+                fixedStation++;
+                repairSound.Play();
             }
         }
 
@@ -353,18 +385,11 @@ public class PickupItems : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
-                if (tutorialStatus >= 1)
-                {
-                    player.SetActive(false);
-                    puzzle2.SetActive(true);
-                    captureTower.Play();
-                } else {
-                    tutorialStatus = 1;
-                    PlayerPrefs.SetInt("tutorialStatus", tutorialStatus);
-
-                    player.SetActive(false);
-                    puzzleTutorial.SetActive(true);
-                }
+                player.SetActive(false);
+                puzzle2.SetActive(true);
+                captureTower.Play();
+                fixedStation++;
+                repairSound.Play();
             }
         }
 
@@ -372,18 +397,11 @@ public class PickupItems : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
-                if (tutorialStatus >= 1)
-                {
-                    player.SetActive(false);
-                    puzzle3.SetActive(true);
-                    captureTower.Play();
-                } else {
-                    tutorialStatus = 1;
-                    PlayerPrefs.SetInt("tutorialStatus", tutorialStatus);
-
-                    player.SetActive(false);
-                    puzzleTutorial.SetActive(true);
-                }
+                player.SetActive(false);
+                puzzle3.SetActive(true);
+                captureTower.Play();
+                fixedStation++;
+                repairSound.Play();
             }
         }
     }
@@ -413,5 +431,20 @@ public class PickupItems : MonoBehaviour
     public void DeleteSerafanjeAnim()
     {
         serafanjeAnim.SetActive(false);
+    }
+
+    public void PlayDialogue()
+    {
+        talking.Play();
+    }
+
+    public void PlayDialogue2()
+    {
+        talking2.Play();
+    }
+
+    public void PlayDialogue3()
+    {
+        talking3.Play();
     }
 }

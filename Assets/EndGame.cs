@@ -27,6 +27,6 @@ public class EndGame : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
 
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(2);
     }
 }
