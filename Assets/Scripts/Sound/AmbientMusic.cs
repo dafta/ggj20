@@ -7,7 +7,7 @@ public class AmbientMusic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("muzika");
+        AudioListener.volume = PlayerPrefs.GetFloat("muzika", 0.5f);
         //Debug.Log(PlayerPrefs.GetFloat("muzika"));
     }
 }
