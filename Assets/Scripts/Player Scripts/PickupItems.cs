@@ -5,7 +5,13 @@ using UnityEngine.UI;
 
 public class PickupItems : MonoBehaviour
 {
+    public int counter = 0;
+
     public GameObject panel;
+    public GameObject sipanje;
+    public GameObject serafanjeAnim;
+
+    public GameObject endGame;
 
     [Header("Objects")]
     public GameObject gasTank;
@@ -16,6 +22,9 @@ public class PickupItems : MonoBehaviour
     public GameObject Helipropeler;
 
     public GameObject walkieTalkie;
+
+    public GameObject rotor;
+    public GameObject zadnjiKraj2;
 
     [Header("Text References")]
     public Text pickUpText;
@@ -31,6 +40,7 @@ public class PickupItems : MonoBehaviour
     public GameObject screwdriverIcon;
     public GameObject fuelIcon;
     public GameObject propelerIcon;
+    public GameObject zadnjiKraj;
 
 
     [Header("Inventory")]
@@ -56,7 +66,7 @@ public class PickupItems : MonoBehaviour
     public GameObject screwdriverPNG;
     public GameObject fuelPNG;
     public GameObject propelerPNG;  //wingPNG
-    //public GameObject rotorPNG;
+    public GameObject rotorPNG;
 
     [Header("Player")]
     public GameObject player;
@@ -67,10 +77,14 @@ public class PickupItems : MonoBehaviour
     public GameObject puzzle2;
     public GameObject puzzle3;
 
+    [Header("Objects")]
+    public AudioSource captureTower;
+
     private void Start()
     {
         gasTank.SetActive(true);
         Helipropeler.SetActive(false);
+        endGame.SetActive(false);
     }
 
     private void Update()
@@ -95,6 +109,13 @@ public class PickupItems : MonoBehaviour
         {
             walkieTalkie.SetActive(false);
             walkieAnim.SetBool("HoldingWalkie", false);
+        }
+
+        if(counter >= 7) 
+        {
+            //begin talking sound
+            //upali sliku sa objectivom "get of the island"
+            endGame.SetActive(true);
         }
     }
 
@@ -121,14 +142,14 @@ public class PickupItems : MonoBehaviour
 
         if (other.tag == "Propeler")
         {
-            propelerPNG.SetActive(true);
+            rotorPNG.SetActive(true);
             if (Input.GetKey(KeyCode.E))
             {
                 propeler.SetActive(false);
                 wing = true;
                 tick2.SetActive(true);
 
-                Destroy(propelerPNG);
+                Destroy(rotorPNG);
 
                 pickupAnim.SetBool("Pickup", true);
                 Invoke("RemoveArm", 0.50f);
@@ -171,56 +192,63 @@ public class PickupItems : MonoBehaviour
 
 
         //Triggeri za repair
-        if (other.tag == "RepairWing")
+        if (other.tag == "RepairRotor")
         {
-            if(wing == false)
+            if(wing)
             {
-                repairText.text = "You need to find the propeler";
-
-            } else
-            {
-                repairText.text = "Press 'R' to repair wing";
-
-                if(Input.GetKeyDown(KeyCode.R))
-                {
-                    Helipropeler.SetActive(true);
-                    repairText.text = "";
-                    wing = false;
-                    propelerIcon.SetActive(false);
-                    //wing = false;
-
-                }
-
-                //iskljuciti kvacicu za propeler u inventoryu
+                rotor.SetActive(true);
+                propelerIcon.SetActive(false);
+                counter++;
+                wing = false;
             }
         }
 
-        if (other.tag == "PutFuel")
+        if (other.tag == "RepairZadnjiKraj")
         {
-            if (gas == false)
+            if (elisa)
             {
-                repairText.text = "You need to find a gas tank";
-            }
-            else
-            {
-                repairText.text = "Press 'R' to fill up fuel";
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    repairText.text = "";
-                    fuelIcon.SetActive(false);
-                    //animacija za sipanje goriva
-                }
-
-                //iskljuciti kvacicu za gas u inventoryu
+                zadnjiKraj2.SetActive(true);
+                zadnjiKraj.SetActive(false);
+                counter++;
+                elisa = false;
             }
         }
 
-        if(other.tag == "RadioTrigger1")
+        if (other.tag == "FillGas")
+        {
+            if (gas)
+            {
+                //optional - animacija sipanja goriva (ako stignem)
+                sipanje.SetActive(true);
+                Invoke("DeleteGasAnimation", 4.3f);
+                fuelIcon.SetActive(false);
+                counter++;
+                gas = false;
+            }
+        }
+
+        if (other.tag == "Serafanje")
+        {
+            if (screwdriver)
+            {
+                serafanjeAnim.SetActive(true);
+                Invoke("DeleteSerafanjeAnim", 4.35f);
+                screwdriverIcon.SetActive(false);
+                counter++;
+                screwdriver = false;
+            }
+        }
+
+
+
+        if (other.tag == "RadioTrigger1")
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
                 player.SetActive(false);
                 puzzle1.SetActive(true);
+                counter++;
+                captureTower.Play();
             }
         }
 
@@ -230,6 +258,8 @@ public class PickupItems : MonoBehaviour
             {
                 player.SetActive(false);
                 puzzle2.SetActive(true);
+                counter++;
+                captureTower.Play();
             }
         }
 
@@ -239,6 +269,8 @@ public class PickupItems : MonoBehaviour
             {
                 player.SetActive(false);
                 puzzle3.SetActive(true);
+                counter++;
+                captureTower.Play();
             }
         }
     }
@@ -258,5 +290,15 @@ public class PickupItems : MonoBehaviour
     public void RemoveFix()
     {
         FixAnim.SetBool("Repair", false);
+    }
+
+    public void DeleteGasAnimation()
+    {
+        sipanje.SetActive(false);
+    }
+
+    public void DeleteSerafanjeAnim()
+    {
+        serafanjeAnim.SetActive(false);
     }
 }

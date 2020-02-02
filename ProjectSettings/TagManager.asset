@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Elisa
+  - RepairWing
+  - RadioTrigger1
+  - PutFuel
+  - RepairRotor
+  - Screwdriver
+  - PuzzleTutorialStart
+  - GasTank
+  - Propeler
+  - RadioTrigger2
+  - RadioTrigger3
+  - RepairZadnjiKraj
+  - FillGas
+  - Serafanje
   layers:
   - Default
   - TransparentFX
