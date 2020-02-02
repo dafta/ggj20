@@ -95,6 +95,8 @@ public class PickupItems : MonoBehaviour
 
     public AudioSource repairSound;
 
+    public GameObject kriloMinimap;
+
     public bool idk = false;
 
     private void Start()
@@ -283,6 +285,7 @@ public class PickupItems : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 kriloOtpalo.SetActive(false);
+                kriloMinimap.SetActive(false);
                 elisa = 1;
                 tick3.SetActive(true);
 
