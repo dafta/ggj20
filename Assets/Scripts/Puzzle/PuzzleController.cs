@@ -40,22 +40,28 @@ public class PuzzleController : MonoBehaviour
         {
             pi.tower1Status = 1;
             pi.counter++;
+            pi.fixedStation++;
             PlayerPrefs.SetInt("tower1Status", pi.tower1Status);
             PlayerPrefs.SetInt("counter", pi.counter);
+            PlayerPrefs.SetInt("fixedStation", pi.fixedStation);
             tower.GetComponent<FixTower>().Destroy();
         } else if (puzzleNo == 2)
         {
             pi.tower2Status = 2;
             pi.counter++;
+            pi.fixedStation++;
             PlayerPrefs.SetInt("tower2Status", pi.tower2Status);
             PlayerPrefs.SetInt("counter", pi.counter);
+            PlayerPrefs.SetInt("fixedStation", pi.fixedStation);
             tower.GetComponent<FixTower>().Destroy();
         } else if (puzzleNo == 3)
         {
             pi.tower3Status = 3;
             pi.counter++;
+            pi.fixedStation++;
             PlayerPrefs.SetInt("tower3Status", pi.tower3Status);
             PlayerPrefs.SetInt("counter", pi.counter);
+            PlayerPrefs.SetInt("fixedStation", pi.fixedStation);
             tower.GetComponent<FixTower>().Destroy();
         }
 

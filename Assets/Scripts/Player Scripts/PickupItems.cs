@@ -115,6 +115,8 @@ public class PickupItems : MonoBehaviour
         tower2Status = PlayerPrefs.GetInt("tower2Status", 0);
         tower3Status = PlayerPrefs.GetInt("tower3Status", 0);
 
+        fixedStation = PlayerPrefs.GetInt("fixedStation", 0);
+
         counter = PlayerPrefs.GetInt("counter", 0);
 
         if (wing >= 1) {
@@ -194,9 +196,15 @@ public class PickupItems : MonoBehaviour
 
         if(counter >= 7)
         {
-            //begin talking sound
             //upali sliku sa objectivom "get of the island"
             endGame.SetActive(true);
+        }
+
+        if (fixedStation == 3) {
+            if (Input.GetMouseButtonDown(1)) {
+                fixedStation = 4;
+                StartCoroutine(Talk());
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.I))
@@ -379,7 +387,6 @@ public class PickupItems : MonoBehaviour
                 player.SetActive(false);
                 puzzle1.SetActive(true);
                 captureTower.Play();
-                fixedStation++;
                 repairSound.Play();
             }
         }
@@ -391,7 +398,6 @@ public class PickupItems : MonoBehaviour
                 player.SetActive(false);
                 puzzle2.SetActive(true);
                 captureTower.Play();
-                fixedStation++;
                 repairSound.Play();
             }
         }
@@ -403,7 +409,6 @@ public class PickupItems : MonoBehaviour
                 player.SetActive(false);
                 puzzle3.SetActive(true);
                 captureTower.Play();
-                fixedStation++;
                 repairSound.Play();
             }
         }
@@ -434,6 +439,15 @@ public class PickupItems : MonoBehaviour
     public void DeleteSerafanjeAnim()
     {
         serafanjeAnim.SetActive(false);
+    }
+
+    IEnumerator Talk() {
+        yield return new WaitForSeconds(1);
+        talking.Play();
+        yield return new WaitForSeconds(4);
+        talking2.Play();
+        yield return new WaitForSeconds(9);
+        talking3.Play();
     }
 
     public void PlayDialogue()

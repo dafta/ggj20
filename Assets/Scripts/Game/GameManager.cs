@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("tower2Status", 0);
         PlayerPrefs.SetInt("tower3Status", 0);
 
+        PlayerPrefs.SetInt("fixedStation", 0);
+
         PlayerPrefs.SetInt("counter", 0);
 
         SceneManager.LoadScene(1);
